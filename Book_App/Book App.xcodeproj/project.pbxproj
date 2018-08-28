@@ -10,6 +10,7 @@
 		3F2DB8EE7919709E5E98A27E /* Pods_Book_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F147F92F59058A2C48D995 /* Pods_Book_App.framework */; };
 		AB735B26FE3677EF563F1F44 /* Pods_Book_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737D11EE493C3AD46C47A282 /* Pods_Book_AppUITests.framework */; };
 		AFD190D7FA5D076E73A8885D /* Pods_Book_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82688085576B9C14592E58B /* Pods_Book_AppTests.framework */; };
+		D901E26720FB9DCD00BAF887 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = D901E26620FB9DCC00BAF887 /* Books.swift */; };
 		D9029B0A20BCF4BC001AA8C6 /* Authors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9029B0920BCF4BC001AA8C6 /* Authors.swift */; };
 		D91BBCCA20C638C10019EB19 /* AuthorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D91BBCC920C638C10019EB19 /* AuthorCell.swift */; };
 		D924E2B72080E940000E851B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D924E2B62080E940000E851B /* AppDelegate.swift */; };
@@ -18,9 +19,9 @@
 		D924E2C52080E942000E851B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D924E2C32080E942000E851B /* LaunchScreen.storyboard */; };
 		D924E2D02080E942000E851B /* Book_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D924E2CF2080E942000E851B /* Book_AppTests.swift */; };
 		D924E2DB2080E942000E851B /* Book_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D924E2DA2080E942000E851B /* Book_AppUITests.swift */; };
+		D94B2F1621079CEA00C80DF2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94B2F1521079CEA00C80DF2 /* LoginController.swift */; };
 		D97DC44E208652D50013DBA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D97DC44D208652D50013DBA1 /* GoogleService-Info.plist */; };
 		D97DC4522086568A0013DBA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97DC4512086568A0013DBA1 /* ViewController.swift */; };
-		D9A5F60A20E043780020A580 /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A5F60920E043780020A580 /* Books.swift */; };
 		D9A5F60C20E04EFB0020A580 /* Classes in Resources */ = {isa = PBXBuildFile; fileRef = D9A5F60B20E04EFB0020A580 /* Classes */; };
 		D9A5F61820E0565D0020A580 /* BEMAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5F61120E0518D0020A580 /* BEMAnimationManager.m */; };
 		D9A5F61920E0565F0020A580 /* BEMPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5F61220E0518D0020A580 /* BEMPathManager.m */; };
@@ -55,6 +56,7 @@
 		92D854F41440A96A0F5F7D1D /* Pods-Book AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Book AppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Book AppUITests/Pods-Book AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AFDD7CC09054C7C195D76714 /* Pods-Book AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Book AppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Book AppTests/Pods-Book AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B82688085576B9C14592E58B /* Pods_Book_AppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Book_AppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D901E26620FB9DCC00BAF887 /* Books.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 		D9029B0920BCF4BC001AA8C6 /* Authors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authors.swift; sourceTree = "<group>"; };
 		D91BBCC920C638C10019EB19 /* AuthorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorCell.swift; sourceTree = "<group>"; };
 		D924E2B32080E940000E851B /* Book App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,9 +71,9 @@
 		D924E2D62080E942000E851B /* Book AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Book AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D924E2DA2080E942000E851B /* Book_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_AppUITests.swift; sourceTree = "<group>"; };
 		D924E2DC2080E942000E851B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D94B2F1521079CEA00C80DF2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D97DC44D208652D50013DBA1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D97DC4512086568A0013DBA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D9A5F60920E043780020A580 /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 		D9A5F60B20E04EFB0020A580 /* Classes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Classes; path = "../../BEMCheckBox-master/Classes"; sourceTree = "<group>"; };
 		D9A5F60D20E04FE20020A580 /* BookAppHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookAppHeader.h; sourceTree = "<group>"; };
 		D9A5F60E20E0515B0020A580 /* CheckBoxHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckBoxHeader.h; sourceTree = "<group>"; };
@@ -188,10 +190,11 @@
 				D97DC44D208652D50013DBA1 /* GoogleService-Info.plist */,
 				D9C45B9B208661F100A49E6B /* DataService.swift */,
 				D9C45B9D2086681300A49E6B /* ListOfBooks.swift */,
+				D94B2F1521079CEA00C80DF2 /* LoginController.swift */,
 				D9A5F60E20E0515B0020A580 /* CheckBoxHeader.h */,
 				D9029B0920BCF4BC001AA8C6 /* Authors.swift */,
 				D91BBCC920C638C10019EB19 /* AuthorCell.swift */,
-				D9A5F60920E043780020A580 /* Books.swift */,
+				D901E26620FB9DCC00BAF887 /* Books.swift */,
 			);
 			path = "Book App";
 			sourceTree = "<group>";
@@ -398,17 +401,21 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Book App/Pods-Book App-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -443,11 +450,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D91BBCCA20C638C10019EB19 /* AuthorCell.swift in Sources */,
+				D94B2F1621079CEA00C80DF2 /* LoginController.swift in Sources */,
 				D9C45B9C208661F100A49E6B /* DataService.swift in Sources */,
 				D97DC4522086568A0013DBA1 /* ViewController.swift in Sources */,
+				D901E26720FB9DCD00BAF887 /* Books.swift in Sources */,
 				D9A5F61A20E056610020A580 /* BEMCheckBoxGroup.m in Sources */,
 				D9A5F61B20E056650020A580 /* BEMCheckBox.m in Sources */,
-				D9A5F60A20E043780020A580 /* Books.swift in Sources */,
 				D9A5F61920E0565F0020A580 /* BEMPathManager.m in Sources */,
 				D924E2B72080E940000E851B /* AppDelegate.swift in Sources */,
 				D9029B0A20BCF4BC001AA8C6 /* Authors.swift in Sources */,
@@ -629,10 +637,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Book App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Book-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = BookAppHeader.h;
@@ -649,10 +654,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Book App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Book-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = BookAppHeader.h;
@@ -669,11 +671,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Book AppTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bryn-Mawr.Book-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -690,11 +688,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Book AppTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bryn-Mawr.Book-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -710,11 +704,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Book AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bryn-Mawr.Book-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -730,11 +720,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Book AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bryn-Mawr.Book-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

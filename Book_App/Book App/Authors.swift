@@ -17,6 +17,9 @@ struct Author {
 class Series: NSObject{
     var series: String?
 }
-class Book: NSObject{
+struct Book {
     var books: String?
+    //var hasChecked: Bool
+    var hasFavorited1: Bool
+    var hasFavorited2: Bool
 }

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window = UIWindow()
         window?.makeKeyAndVisible()
-        let navController = UINavigationController(rootViewController: HomeController())
+        let navController = UINavigationController(rootViewController: LoginController())
         window?.rootViewController = navController
         return true
     }

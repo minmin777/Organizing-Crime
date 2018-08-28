@@ -8,7 +8,8 @@ target 'Book App' do
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
   pod 'KeychainSwift'
-  pod 'CheckBox'
+  pod 'M13Checkbox'
+  pod 'BEMCheckBox'
   # Pods for Book App
 #  pod 'Book App'
   target 'Book AppTests' do

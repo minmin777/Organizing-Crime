@@ -10,6 +10,39 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 import KeychainSwift
+/*class TabController: UITabBarController{
+
+    override func viewDidLoad() {
+        
+        self.title = "Authors"
+        let downloadViewController = HomeController()
+        downloadViewController.tabBarItem = UITabBarItem(title: "Series", image: nil, selectedImage:nil)
+        
+        let viewControllerList = [ downloadViewController, downloadViewController]
+        viewControllers = viewControllerList
+    }
+}*/
+
+class AuthorCell: UITableViewCell{
+    var link: HomeController?
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        //backgroundColor = .red
+        let starButton = UIButton(type: .system)
+        starButton.setImage(#imageLiteral(resourceName: "fav_star"), for: .normal)
+        starButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        starButton.tintColor = .red
+        starButton.addTarget(self, action: #selector(handleMarkAsFavorite), for: .touchUpInside)
+        accessoryView = starButton
+    }
+    @objc private func handleMarkAsFavorite() {
+        //        print("Marking as favorite")
+        link?.someMethodIWantToCall(cell: self)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
 class HomeController: UITableViewController, UISearchResultsUpdating{
     let cellId = "cellId"
     var ref: DatabaseReference!
@@ -19,15 +52,63 @@ class HomeController: UITableViewController, UISearchResultsUpdating{
     var authorSectionTitles = [String]()
     var authorDictionary = [String: [String]]()
     let searchController = UISearchController(searchResultsController: nil)
+    var showIndexPaths = false
+    @objc func handleShowFavorites() {
+        print("Attemping reload animation of indexPaths...")
+        
+        weak var tableViewController: UITableView!
+        // build all the indexPaths we want to reload
+        
+        //        for index in twoDimensionalArray[0].indices {
+        //            let indexPath = IndexPath(row: index, section: 0)
+        //            indexPathsToReload.append(indexPath)
+        //        }
+        
+        showIndexPaths = !showIndexPaths
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return filteredAuthor.count
+            
+        }
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! AuthorCell
+            cell.link = self
+            /*let auKey = authorSectionTitles[indexPath.section]
+             if let auValues = authorDictionary[auKey] {
+             //print("cell.text", auValues[indexPath.row])
+             cell.textLabel?.text = auValues[indexPath.row]
+             }*/
+            
+            //let name = self.authorList[indexPath.row].author
+            
+            let name = filteredAuthor[indexPath.row]
+            print(name.author! + " " + " in button")
+            print(name.hasFavorited)
+            if name.hasFavorited{
+                cell.textLabel?.text = name.author
+                cell.accessoryView?.tintColor = UIColor.red
+            }
+            
+            return cell
+            
+            
+        }
+        print(filteredAuthor)
+        tableViewController.reloadData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorited", style: .plain, target: self, action: #selector(handleShowFavorites))
         navigationItem.title = "Authors"
         navigationController?.navigationBar.prefersLargeTitles = true
         //filteredAuthor = self.authorList
-
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        fetchAuthors()
+        checkIfUserIsLoggedIn()
         tableView.register(AuthorCell.self, forCellReuseIdentifier: cellId)
         ref = Database.database().reference()
-        fetchAuthors()
+
 
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -35,6 +116,47 @@ class HomeController: UITableViewController, UISearchResultsUpdating{
         tableView.tableHeaderView = searchController.searchBar
 
     }
+    @objc func handleLogout() {
+        
+
+        
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError {
+            print(logoutError)
+        }
+        /*DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }*/
+       /*let loginController = LoginController()
+        //let _ = navigationController?.popViewController(animated: true)
+
+        present(loginController, animated: true, completion: nil)*/
+        //self.navigationController?.popViewController(animated: false)
+        /*let seriesController = HomeController()
+        //self.dismiss(animated: true, completion: nil)
+        
+        self.navigationController?.pushViewController(seriesController, animated: false)*/
+        //let loginController = LoginController()
+        //loginController.messagesController = self
+        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popToRootViewController(animated: true)
+
+
+
+    }
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleLogout), with: nil, afterDelay: 0)
+        }else{
+            //fetchAuthors()
+            DispatchQueue.main.async(execute:{
+                self.tableView.reloadData()
+            })
+        }
+    }
+
     func someMethodIWantToCall(cell: UITableViewCell) {
         //        print("Inside of ViewController now...")
         
@@ -49,9 +171,49 @@ class HomeController: UITableViewController, UISearchResultsUpdating{
         filteredAuthor[indexPathTapped.row].hasFavorited = !hasFavorited
         
         //        tableView.reloadRows(at: [indexPathTapped], with: .fade)
-        
+        let uid = Auth.auth().currentUser?.uid
+        let thisUsersAuthRef = self.ref.child("users").child(uid!).child("Favorited")
+        let authref = thisUsersAuthRef.childByAutoId().child("favorite")
+        authref.setValue(authors.author)
         cell.accessoryView?.tintColor = hasFavorited ? UIColor.lightGray : .red
     }
+    /*func updatefavorites(){
+        for var i in filteredAuthor{
+        let uid = Auth.auth().currentUser?.uid
+        print(uid)
+        refHandle = ref.child("users").child(uid!).child("Favorited").observe(DataEventType.childAdded, with: {
+            (snapshot) in
+            //if snapshot.hasChild("Favorited"){
+            //print(snapshot.childSnapshot(forPath: "Favorited").childSnapshot(forPath: "favorite").value)
+            //if let dictionary = snapshot.key as? String{
+            if let aa = snapshot.childSnapshot(forPath: "favorite").value as? String{
+                print("aa " + aa)
+                print(i.author)
+                if aa == i.author{
+                    print("in first if")
+                    //color = "red"
+                    //cell.accessoryView?.tintColor = UIColor.red
+                    i.hasFavorited = true
+                }
+                else{
+                    print("in else")
+                    //color = "lightGray"
+                    //cell.accessoryView?.tintColor = UIColor.lightGray
+                    i.hasFavorited = false;
+                }
+                DispatchQueue.main.async(execute:{
+                    self.tableView.reloadData()
+                })
+            }
+            
+            //}else{
+            //color = "lightGray"
+            //cell.accessoryView?.tintColor = UIColor.lightGray
+            //}
+            
+        })
+        }
+    }*/
     func fetchAuthors(){
         /*ref.child("SERIES_NUM").observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
@@ -63,12 +225,41 @@ class HomeController: UITableViewController, UISearchResultsUpdating{
                 }
             }
         })*/
+
+        let uid = Auth.auth().currentUser?.uid
+        var fav: [String] = []
+        
+        if uid != nil {
+            print(uid)
+            let ref = Database.database().reference()
+            ref.child("users").child(uid!).child("Favorited").observe(DataEventType.childAdded, with: {
+            (snapshots) in
+            //if snapshot.hasChild("Favorited"){
+            //print(snapshot.childSnapshot(forPath: "Favorited").childSnapshot(forPath: "favorite").value)
+            //if let dictionary = snapshot.key as? String{
+            
+            if let aa = snapshots.childSnapshot(forPath: "favorite").value as? String{
+                fav.append(aa)
+            }})}
+        DispatchQueue.main.async(execute:{
+            self.tableView.reloadData()
+        })
+        print("regular fav", fav)
+        let ref = Database.database().reference()
         refHandle = ref.child("SERIES_NUM").observe(DataEventType.childAdded, with: {
             (snapshot) in
             //if let dictionary = snapshot.key as? String{
+
                 if let aa = snapshot.childSnapshot(forPath: "AUTHOR").value as? String{
-                    let aut = Author(author: aa, hasFavorited: false)
-                    self.authorList.append(aut)
+                    if fav.contains(aa){
+                        let aut = Author(author: aa, hasFavorited: true)
+                        self.authorList.append(aut)
+                    }else{
+                        let aut = Author(author: aa, hasFavorited: false)
+                        self.authorList.append(aut)
+                    }
+                    
+                    
                     DispatchQueue.main.async(execute:{
                         self.tableView.reloadData()
                     })
@@ -87,7 +278,8 @@ class HomeController: UITableViewController, UISearchResultsUpdating{
                     })
                     }})}*/
                 self.filteredAuthor = self.authorList
-            })
+        })
+
             /*for au in self.authorList{
                 //print("au in fetchauthors", au)
                 let auKey = String((au.author?.prefix(1))!)
@@ -138,10 +330,41 @@ class HomeController: UITableViewController, UISearchResultsUpdating{
             //print("cell.text", auValues[indexPath.row])
             cell.textLabel?.text = auValues[indexPath.row]
         }*/
-        //let name = self.authorList[indexPath.row].author
-        let name = self.filteredAuthor[indexPath.row]
-        cell.textLabel?.text = name.author
-        cell.accessoryView?.tintColor = name.hasFavorited ? UIColor.red : .lightGray
+        let name = self.filteredAuthor[indexPath.row].author
+        
+
+       /* if color == "red"{
+            cell.accessoryView?.tintColor = UIColor.red
+        }else{
+            cell.accessoryView?.tintColor = UIColor.lightGray
+        }*/
+        let uid = Auth.auth().currentUser?.uid
+
+        /*ref.child("users").child(uid!).child("Favorited").observe(DataEventType.childAdded, with: {
+            (snapshots) in
+            //if snapshot.hasChild("Favorited"){
+            //print(snapshot.childSnapshot(forPath: "Favorited").childSnapshot(forPath: "favorite").value)
+            //if let dictionary = snapshot.key as? String{
+            
+            for aa in snapshots.children.allObjects as! [DataSnapshot]{
+                /*if !self.filteredAuthor[indexPath.row].hasFavorited && aa == name{
+                    snapshots.removeValue { error in
+                        if error != nil {
+                            print("error \(error)")
+                        }
+                    }
+                }*/
+                print(aa.value)
+                print(name)
+                let aaa = aa.value as? String
+                print(!self.filteredAuthor[indexPath.row].hasFavorited)
+                if !self.filteredAuthor[indexPath.row].hasFavorited && aaa == name{
+                    aa.ref.child(aa.key).parent?.removeValue()
+                }
+            }})*/
+        print("self.filteredAuthor[indexPath.row]:", self.filteredAuthor[indexPath.row])
+        cell.textLabel?.text = name
+        cell.accessoryView?.tintColor = self.filteredAuthor[indexPath.row].hasFavorited ? UIColor.red : .lightGray
         return cell
         
         
@@ -227,7 +450,7 @@ class SeriesController: UITableViewController{
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         ref = Database.database().reference()
-        fetchAuthors()
+        fetchSeries()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -243,7 +466,7 @@ class SeriesController: UITableViewController{
         
         
     }
-    func fetchAuthors(){
+    func fetchSeries(){
         //if let au = author.author as? String{
         //print(ref.child("Aames, Avery"))
         refHandle = ref.child("SERIES_NUM").child(author.author!).observe(DataEventType.childAdded, with: {

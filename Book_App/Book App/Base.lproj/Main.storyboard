@@ -85,10 +85,6 @@
                                         <accessibility key="accessibilityConfiguration" identifier="AuthorCell"/>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="0Ci-h7-8Bd" id="SzY-fN-4OK"/>
-                                    <outlet property="delegate" destination="0Ci-h7-8Bd" id="A1u-I8-TaU"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
